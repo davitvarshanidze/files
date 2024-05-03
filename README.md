@@ -12,13 +12,18 @@
     defaults write -g NSDisableAutomaticTermination -bool true
     defaults write com.apple.universalaccess reduceTransparency -bool true
     sudo launchctl list | grep -v apple | awk '{print $3}' | xargs -I{} sudo launchctl remove {}
-    
+    defaults write com.apple.Safari IncludeInternalDebugMenu 1
+    defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+    sudo pmset -b sleep 10
+    sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
     brew update && brew upgrade
     sudo trimforce enable
 
     diskutil verifyDisk diskX // check disk health
     top -o MEM // chcek system memory usage
     top -o CPU // monitor CPU usage
+    nettop // monitor network usage
+    system_profiler SPPowerDataType // monitor battery health
     sudo purge // clear system cache
 
 ## Karabiner commands:
