@@ -27,7 +27,7 @@
 
 ## Karabiner:
     Simple Modifications: caps_lock => left_control
-    Complex Modifications: Vi Style Arrows = Control + h/j/k/l to arrows
+    Complex Modifications: Vi Style Arrows = CMD + h/j/k/l to arrows
     
 ## Brew casks:
     automake
