@@ -1,5 +1,6 @@
 ## Terminal commands:
     defaults write -g KeyRepeat -int 1
+    /bin/launchctl setenv MTL_HUD_ENABLED 1
 
 ## Karabiner commands:
     Simple Modifications: caps_lock => left_control
