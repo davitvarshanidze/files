@@ -2,6 +2,26 @@
     defaults write -g KeyRepeat -int 1
     
 ## Brew casks:
+    automake
+    binutils
+    capstone
+    coq
+    elixir
+    exiftool
+    gcc
+    john-jumbo
+    lean
+    libtool
+    md5sha1sum
+    mit-scheme
+    node
+    openvpn
+    postgresql
+    rlwrap
+    telnet
+    tmux
+    vim
+    wget
     adoptopenjdk
     burp-suite
     eloston-chromium
