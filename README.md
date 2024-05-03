@@ -1,5 +1,8 @@
 ## Terminal commands:
     defaults write -g KeyRepeat -int 1
+
+## Karabiner commands:
+    Simple Modifications: caps_lock => left_control
     
 ## Brew casks:
     automake
@@ -14,6 +17,7 @@
     libtool
     md5sha1sum
     mit-scheme
+    docker
     node
     openvpn
     postgresql
@@ -28,6 +32,10 @@
     python
     tree
     karabiner-elements
+    slack
+    zoom
+    discord
+    OneMenu
     wget
     adoptopenjdk
     burp-suite
