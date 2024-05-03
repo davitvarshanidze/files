@@ -1,2 +1,3 @@
-##Type in terminal:
-defaults write -g KeyRepeat -int 1 * for faster keyboard repeat
+## Terminal commands:
+    defaults write -g KeyRepeat -int 1
+    
