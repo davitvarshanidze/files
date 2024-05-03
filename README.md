@@ -45,7 +45,7 @@
     firefox
     obs
     qbittorrent
-    rectangle - cntrl/option/cmd+ret = half full-screen
+    rectangle
     sensiblesidebuttons
     spotify
     vagrant
