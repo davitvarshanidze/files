@@ -19,6 +19,7 @@
     postgresql
     rlwrap
     telnet
+    ghidra
     tmux
     vim
     wget
