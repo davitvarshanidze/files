@@ -22,6 +22,12 @@
     ghidra
     tmux
     vim
+    pyvim
+    node
+    lima
+    python
+    tree
+    karabiner-elements
     wget
     adoptopenjdk
     burp-suite
