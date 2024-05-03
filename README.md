@@ -11,6 +11,8 @@
     defaults write com.apple.dock ResetLaunchPad -bool true && killall Dock
     defaults write -g NSDisableAutomaticTermination -bool true
     defaults write com.apple.universalaccess reduceTransparency -bool true
+    sudo launchctl list | grep -v apple | awk '{print $3}' | xargs -I{} sudo launchctl remove {}
+    
     brew update && brew upgrade
     sudo trimforce enable
 
