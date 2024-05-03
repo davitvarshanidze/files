@@ -4,6 +4,7 @@
 
 ## Karabiner commands:
     Simple Modifications: caps_lock => left_control
+    Complex Modifications: Vi Style Arrows = Control + h/j/k/l to arrows
     
 ## Brew casks:
     automake
@@ -44,7 +45,7 @@
     firefox
     obs
     qbittorrent
-    rectangle
+    rectangle - cntrl/option/cmd+ret = half full-screen
     sensiblesidebuttons
     spotify
     vagrant
