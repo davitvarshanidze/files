@@ -13,7 +13,6 @@
     sudo launchctl list | grep -v apple | awk '{print $3}' | xargs -I{} sudo launchctl remove {}
     defaults write com.apple.Safari IncludeInternalDebugMenu 1
     defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-    sudo pmset -b sleep 10
     sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
     brew update && brew upgrade
     sudo trimforce enable
