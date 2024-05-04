@@ -33,8 +33,6 @@
     automake
     binutils
     capstone
-    coq
-    elixir
     exiftool
     gcc
     john-jumbo
