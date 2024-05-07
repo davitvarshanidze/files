@@ -67,7 +67,6 @@
     qbittorrent
     rectangle
     sensiblesidebuttons
-    spotify
     vagrant
     virtualbox
     visual-studio-code
