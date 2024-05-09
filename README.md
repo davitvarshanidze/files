@@ -14,6 +14,7 @@
     defaults write com.apple.Safari IncludeInternalDebugMenu 1
     defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
     sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+    defaults write com.apple.Terminal AppleShowScrollBars -string WhenScrolling
     brew update && brew upgrade
     sudo trimforce enable
 
