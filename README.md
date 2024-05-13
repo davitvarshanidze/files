@@ -19,7 +19,7 @@
     sudo trimforce enable
 
     diskutil verifyDisk diskX // check disk health
-    top -o MEM // chcek system memory usage
+    top -o MEM // check system memory usage
     top -o CPU // monitor CPU usage
     nettop // monitor network usage
     system_profiler SPPowerDataType // monitor battery health
