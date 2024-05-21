@@ -24,10 +24,6 @@
     nettop // monitor network usage
     system_profiler SPPowerDataType // monitor battery health
     sudo purge // clear system cache
-
-## Karabiner:
-    Simple Modifications: caps_lock => left_control
-    Complex Modifications: Vi Style Arrows = CMD + h/j/k/l to arrows
     
 ## Brew casks:
     automake
