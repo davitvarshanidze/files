@@ -1,5 +1,6 @@
 ## Terminal commands:
     defaults write -g KeyRepeat -int 1
+    defaults write -g ApplePressAndHoldEnabled -bool false
     /bin/launchctl setenv MTL_HUD_ENABLED 1
     defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
     defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
