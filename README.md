@@ -1,4 +1,4 @@
-## Terminal commands:
+## cmds
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
     /bin/launchctl setenv MTL_HUD_ENABLED 1
@@ -26,10 +26,37 @@
     system_profiler SPPowerDataType // monitor battery health
     sudo purge // clear system cache
     
-## Brew casks:
+## casks
+    adoptopenjdk
+    burp-suite
+    eloston-chromium
+    firefox
+    flux
+    kindle
+    obs
+    qbittorrent
+    rectangle
+    scroll-reverser
+    sensiblesidebuttons
+    spotify
+    multipass
+    visual-studio-code
+    vlc
+    wireshark
+    xquartz
+    zotero
+    tree 
+    slack
+    zoom
+    discord
+    OneMenu
+
+## leaves
     automake
     binutils
     capstone
+    coq
+    elixir
     exiftool
     gcc
     john-jumbo
@@ -37,38 +64,11 @@
     libtool
     md5sha1sum
     mit-scheme
-    docker
     node
     openvpn
     postgresql
     rlwrap
     telnet
-    ghidra
     tmux
     vim
-    pyvim
-    node
-    lima
-    python
-    tree
-    karabiner-elements
-    slack
-    zoom
-    discord
-    OneMenu
     wget
-    adoptopenjdk
-    burp-suite
-    eloston-chromium
-    firefox
-    obs
-    qbittorrent
-    rectangle
-    sensiblesidebuttons
-    vagrant
-    virtualbox
-    visual-studio-code
-    vlc
-    wireshark
-    xquartz
-    zotero
