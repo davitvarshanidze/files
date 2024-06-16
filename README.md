@@ -40,6 +40,7 @@
     vlc
     wireshark
     xquartz
+    utm
     zotero
     tree 
     slack
