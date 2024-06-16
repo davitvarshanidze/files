@@ -2,14 +2,10 @@
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
     /bin/launchctl setenv MTL_HUD_ENABLED 1
-    defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
     defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-    defaults write com.apple.dock expose-animation-duration -float 0.1 && killall Dock
-    defaults write com.apple.finder DisableAllAnimations -bool true && killall Finder
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
     sudo tmutil disable
     sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-    defaults write com.apple.dock ResetLaunchPad -bool true && killall Dock
     defaults write -g NSDisableAutomaticTermination -bool true
     sudo launchctl list | grep -v apple | awk '{print $3}' | xargs -I{} sudo launchctl remove {}
     defaults write com.apple.Safari IncludeInternalDebugMenu 1
