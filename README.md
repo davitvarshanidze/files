@@ -11,7 +11,6 @@
     sudo purge // clear system cache
     
 ## casks
-    emacs
     adoptopenjdk
     burp-suite
     eloston-chromium
