@@ -9,6 +9,9 @@
     nettop // monitor network usage
     system_profiler SPPowerDataType // monitor battery health
     sudo purge // clear system cache
+
+## vscode
+    Open Keyboard Shortcuts (JSON) and put json code above
     
 ## casks
     adoptopenjdk
