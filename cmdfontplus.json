@@ -1,0 +1,10 @@
+[
+  {
+    "key": "cmd+=", // This is Cmd + =
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "cmd+-", // This is Cmd + -
+    "command": "editor.action.fontZoomOut"
+  }
+]
