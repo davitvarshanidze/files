@@ -2,21 +2,12 @@
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
-
-    diskutil verifyDisk diskX // check disk health
-    top -o MEM // check system memory usage
-    top -o CPU // monitor CPU usage
-    nettop // monitor network usage
-    system_profiler SPPowerDataType // monitor battery health
-    sudo purge // clear system cache
-
-## vscode
-    Open Keyboard Shortcuts (JSON) and put json code above
-    
-## casks
+## brew
     adoptopenjdk
     burp-suite
     eloston-chromium
+    brave
+    nvim
     obs
     qbittorrent
     rectangle
@@ -29,7 +20,6 @@
     zoom
     discord
 
-## leaves
     automake
     binutils
     capstone
@@ -45,5 +35,4 @@
     rlwrap
     telnet
     tmux
-    vim
     wget
