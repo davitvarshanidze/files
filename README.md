@@ -20,6 +20,4 @@
     zoom
     discord
     openvpn
-    rlwrap
-    telnet
     wget
