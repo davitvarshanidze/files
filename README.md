@@ -4,7 +4,6 @@
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 ## Homebrew
     eloston-chromium
-    brave
     nvim
     tmux
     alacritty
