@@ -10,3 +10,6 @@ program = "/opt/homebrew/bin/tmux"
 [colors.primary]
 background = "0x151515"
 foreground = "0xEEEEEE"
+[colors.normal]
+green = "#00FFFF"
+blue = "#00FFFF"
