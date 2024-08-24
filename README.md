@@ -8,6 +8,7 @@
     nvim
     tmux
     alacritty
+    docker
     scroll-reverser
     node
     obs
