@@ -8,6 +8,7 @@
     nvim
     tmux
     alacritty
+    scroll-reverser
     node
     obs
     rtorrent
@@ -19,5 +20,3 @@
     slack
     zoom
     discord
-    openvpn
-    wget
