@@ -11,8 +11,7 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     defaults write -g ApplePressAndHoldEnabled -bool false
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 ## Homebrew
-    eloston-chromium
-    qutebrowser
+    google chrome
     nvim
     tmux
     alacritty
