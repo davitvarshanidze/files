@@ -1,12 +1,30 @@
+live_config_reload = true
 [env]
 TERM = "xterm-256color"
-WINIT_X11_SCALE_FACTOR = "1"
 [font]
 size = 17
+offset = { x = 0, y = 0 }
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Heavy"
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+style = "Heavy Italic"
+[font.italic]
+family = "FiraCode Nerd Font"
+style = "Medium Italic"
 [font.normal]
-family = "MesloLGS Nerd Font"
+family = "FiraCode Nerd Font"
+style = "Medium"
 [shell]
 program = "/opt/homebrew/bin/tmux"
 [colors.primary]
 background = "0x262626"
 foreground = "0xEEEEEE"
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 0.9
+[window.padding]
+x = 25
+y = 20
