@@ -15,7 +15,6 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     nvim
     tmux
     alacritty
-    docker
     scroll-reverser
     node
     obs
@@ -25,6 +24,6 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     visual-studio-code
     vlc
     zotero
-    slack
     zoom
     discord
+    iina
