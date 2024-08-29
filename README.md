@@ -18,7 +18,7 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     scroll-reverser
     node
     obs
-    rtorrent
+    qbittorrent
     rectangle
     multipass
     visual-studio-code
