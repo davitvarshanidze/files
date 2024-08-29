@@ -20,10 +20,8 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     obs
     qbittorrent
     rectangle
-    multipass
     visual-studio-code
     vlc
     zotero
-    zoom
     discord
     iina
