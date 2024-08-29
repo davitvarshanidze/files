@@ -12,6 +12,7 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 ## Homebrew
     eloston-chromium
+    firefox
     nvim
     tmux
     alacritty
