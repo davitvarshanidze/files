@@ -17,6 +17,8 @@ git clone https://github.com/datoio/dotfiles.git ~/dotfiles
     tmux
     alacritty
     scroll-reverser
+    nvm
+    git
     node
     obs
     qbittorrent
