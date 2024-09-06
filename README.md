@@ -12,10 +12,8 @@ git clone https://github.com/dvarshanidze/configuration.git ~/configuration
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 ## Homebrew
     eloston-chromium
-    firefox
     nvim
     tmux
-    alacritty
     scroll-reverser
     nvm
     git
@@ -23,7 +21,6 @@ git clone https://github.com/dvarshanidze/configuration.git ~/configuration
     obs
     qbittorrent
     rectangle
-    visual-studio-code
     vlc
     zotero
     discord
