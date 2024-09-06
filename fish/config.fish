@@ -1,7 +1,3 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-
 abbr -a yr 'cal -y'
 abbr -a c cargo
 abbr -a e nvim
