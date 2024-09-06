@@ -26,10 +26,10 @@ vim.opt.foldlevelstart = 99
 -- keep more context on screen while scrolling
 vim.opt.scrolloff = 2
 -- never show me line breaks if they're not there
-vim.opt.wrap = true
+vim.opt.wrap = false
 -- always draw sign column. prevents buffer moving when adding/deleting sign
 vim.opt.signcolumn = 'yes'
--- relative line numbers
+-- sweet sweet relative line numbers
 vim.opt.relativenumber = true
 -- and show the absolute line number for the current line
 vim.opt.number = true
@@ -331,31 +331,26 @@ require("lazy").setup({
 	-- fzf support for ^p
 	{
 		'junegunn/fzf.vim',
-		dependencies = {
-			{ 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
-		},
-		config = function()
-			-- stop putting a giant window over my editor
-			vim.g.fzf_layout = { down = '~20%' }
-			-- when using :Files, pass the file list through
-			--
-			--   https://github.com/jonhoo/proximity-sort
-			--
-			-- to prefer files closer to the current file.
-			function list_cmd()
-				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-				if base == '.' then
-					-- if there is no current file,
-					-- proximity-sort can't do its thing
-					return 'fd --type file --follow'
-				else
-					return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-				end
-			end
-			vim.api.nvim_create_user_command('Files', function(arg)
-				vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
-			end, { bang = true, nargs = '?', complete = "dir" })
-		end
+		    dependencies = {
+		        { 'junegunn/fzf', build = './install --bin' },  -- Let lazy.nvim manage fzf install
+		    },
+		    config = function()
+		        -- stop putting a giant window over my editor
+		        vim.g.fzf_layout = { down = '~20%' }
+		        -- when using :Files, pass the file list through proximity-sort
+		        function list_cmd()
+		            local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+		            if base == '.' then
+		                return 'fd --type file --follow'
+		            else
+		                return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+		            end
+		        end
+		        -- Custom command for :Files using proximity sort
+		        vim.api.nvim_create_user_command('Files', function(arg)
+		            vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
+		        end, { bang = true, nargs = '?', complete = "dir" })
+		    end
 	},
 	-- LSP
 	{
@@ -521,6 +516,40 @@ require("lazy").setup({
 			})
 		end
 	},
+	-- language support
+	-- terraform
+	{
+		'hashivim/vim-terraform',
+		ft = { "terraform" },
+	},
+	-- svelte
+	{
+		'evanleck/vim-svelte',
+		ft = { "svelte" },
+	},
+	-- toml
+	'cespare/vim-toml',
+	-- yaml
+	{
+		"cuducos/yaml.nvim",
+		ft = { "yaml" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	-- rust
+	{
+		'rust-lang/rust.vim',
+		ft = { "rust" },
+		config = function()
+			vim.g.rustfmt_autosave = 1
+			vim.g.rustfmt_emit_files = 1
+			vim.g.rustfmt_fail_silently = 0
+			vim.g.rust_clip_command = 'wl-copy'
+		end
+	},
+	-- fish
+	'khaveesh/vim-fish-syntax',
 	-- markdown
 	{
 		'plasticboy/vim-markdown',
