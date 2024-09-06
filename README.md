@@ -3,7 +3,7 @@
 To clone this repository to your home directory, run the following command:
 
 ```bash
-git clone https://github.com/dvarshanidze/dotfiles.git ~/dotfiles
+git clone https://github.com/dvarshanidze/configuration.git ~/configuration
 ```
 
 ## OSX Terminal Commands
