@@ -6,22 +6,65 @@ To clone this repository to your home directory, run the following command:
 git clone https://github.com/dvarshanidze/configuration.git ~/configuration
 ```
 
-## OSX Terminal Commands
+## Commands to make mac keyboard better
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
+    
 ## Homebrew
-    eloston-chromium
-    nvim
-    tmux
-    scroll-reverser
-    nvm
-    git
-    node
-    obs
-    qbittorrent
-    rectangle
-    vlc
-    zotero
-    discord
-    iina
+==> Formulae
+brotli
+c-ares
+ca-certificates
+fd
+fish
+fzf
+gettext
+git
+htop
+icu4c
+libevent
+libnghttp2
+libuv
+libvterm
+llvm
+lpeg
+luajit
+luv
+lz4
+mpdecimal
+msgpack
+ncurses
+neofetch
+neovim
+node
+nvm
+openssl@3
+pcre2
+pipx
+python@3.12
+readline
+screenresolution
+sqlite
+tmux
+tree-sitter
+unibilium
+utf8proc
+xz
+z3
+zstd
+
+==> Casks
+discord
+docker
+eloston-chromium
+font-noto-sans-mono
+iterm2
+obs
+qbittorrent
+scroll-reverser
+spotify
+visual-studio-code
+vlc
+whatsapp
+zotero
