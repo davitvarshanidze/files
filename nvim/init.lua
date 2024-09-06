@@ -26,9 +26,9 @@ vim.opt.foldlevelstart = 99
 -- keep more context on screen while scrolling
 vim.opt.scrolloff = 2
 -- never show me line breaks if they're not there
-vim.opt.wrap = false
+vim.opt.wrap = true
 -- always draw sign column. prevents buffer moving when adding/deleting sign
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'no'
 -- sweet sweet relative line numbers
 vim.opt.relativenumber = true
 -- and show the absolute line number for the current line
@@ -69,7 +69,7 @@ vim.opt.diffopt:append('indent-heuristic')
 -- show a column at 80 characters as a guide for long lines
 -- vim.opt.colorcolumn = '80'
 --- except in Rust where the rule is 100 characters
-vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
+-- vim.api.nvim_create_autocmd('Filetype', { pattorn = 'rust', command = 'set colorcolumn=100' })
 -- show more hidden characters
 -- also, show tabs nicer
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
@@ -249,7 +249,8 @@ require("lazy").setup({
 		lazy = false, -- load at start
 		priority = 1000, -- load first
 		config = function()
-			vim.cmd([[colorscheme base16-gruvbox-dark-hard]])
+			-- vim.cmd([[colorscheme base16-gruvbox-dark-hard]])
+			vim.cmd([[colorscheme vim]])
 			vim.o.background = 'dark'
 			-- XXX: hi Normal ctermbg=NONE
 			-- Make comments more prominent -- they are important.
@@ -569,6 +570,106 @@ require("lazy").setup({
 			vim.g.vim_markdown_auto_insert_bullets = 0
 		end
 	},
+	-- LSP configuration for clangd (C/C++)
+    {
+        'neovim/nvim-lspconfig',
+        config = function()
+            local lspconfig = require('lspconfig')
+            
+            -- C/C++ using clangd
+            lspconfig.clangd.setup {
+                on_attach = function(client, bufnr)
+                    -- Keybindings for LSP functionality
+                    local opts = { noremap=true, silent=true }
+                    local buf_set_keymap = vim.api.nvim_buf_set_keymap
+                    buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                    buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                    buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+                end,
+                flags = {
+                    debounce_text_changes = 150,
+                }
+            }
+        end,
+    },
+
+-- ADDED LATER IN USE 
+
+    -- Mason for LSP, Linters, and Formatters management
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate", -- Auto-update Mason
+        config = function()
+            require("mason").setup()
+        end
+    },
+
+    -- Mason LSP Config to bridge Mason with lspconfig
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "clangd", "rust_analyzer", "bashls" }, -- Add language servers you need
+            })
+
+            local lspconfig = require("lspconfig")
+
+            -- Automatically setup LSP servers installed by Mason
+            require("mason-lspconfig").setup_handlers {
+                -- Default handler for all servers
+                function (server_name)
+                    lspconfig[server_name].setup {}
+                end,
+            }
+        end,
+    },
+    -- Autocompletion setup using nvim-cmp
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter", -- Lazy load on insert mode
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+        },
+        config = function()
+            local cmp = require'cmp'
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        vim.fn["vsnip#anonymous"](args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                }),
+                sources = cmp.config.sources({
+                    { name = 'nvim_lsp' },
+                }, {
+                    { name = 'buffer' },
+                    { name = 'path' },
+                }),
+            })
+        end,
+    },
+
+    -- Inline function signatures while typing
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {},
+        config = function(_, opts)
+            require "lsp_signature".setup({
+                doc_lines = 0,
+                handler_opts = { border = "none" },
+            })
+        end,
+    },
 })
 
 --[[
