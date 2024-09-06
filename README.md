@@ -1,8 +1,3 @@
-
-```bash
-git clone https://github.com/dvarshanidze/configuration.git ~/configuration
-```
-
 ## Commands to make mac keyboard better
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
