@@ -1,6 +1,3 @@
-## Setup
-
-To clone this repository to your home directory, run the following command:
 
 ```bash
 git clone https://github.com/dvarshanidze/configuration.git ~/configuration
