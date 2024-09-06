@@ -1,3 +1,7 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
 abbr -a yr 'cal -y'
 abbr -a c cargo
 abbr -a e nvim
@@ -25,6 +29,12 @@ set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream 'none'
 set -g fish_prompt_pwd_dir_length 3
 
+# Set colors for prompts
+set -g fish_color_normal white
+set -g fish_color_command green
+set -g fish_color_error red
+set -g fish_color_status red
+
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
 setenv LESS_TERMCAP_mb \e'[01;31m'       # begin blinking
@@ -47,21 +57,23 @@ function fish_user_key_bindings
 end
 
 function fish_prompt
-	set_color brblack
-	echo -n "["(date "+%H:%M")"] "
-	set_color white 
-	echo -n (hostname)
-	if [ $PWD != $HOME ]
-		set_color brblack
-		echo -n ':'
-		set_color green
-		echo -n (basename $PWD)
-	end
-	set_color green
-	printf '%s' (__fish_git_prompt)
-	set_color white 
-	echo -n '$ '
-	set_color normal
+    set_color brblack
+    echo -n "["(date "+%H:%M")"] "
+    
+    set_color white
+    echo -n (hostname)
+    
+    set_color brblack
+    echo -n ':'
+    set_color green
+    echo -n (string replace --regex "^$HOME" "~" $PWD)
+    
+    set_color green
+    printf '%s' (__fish_git_prompt)
+    
+    set_color white
+    echo -n '$ '
+    set_color normal
 end
 
 function fish_greeting
