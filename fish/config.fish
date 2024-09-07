@@ -2,7 +2,7 @@ abbr -a yr 'cal -y'
 abbr -a c cargo
 abbr -a e nvim
 abbr -a m make
-abbr -a o xdg-open
+abbr -a o open
 abbr -a g git
 abbr -a gc 'git checkout'
 abbr -a ga 'git add .'
@@ -73,6 +73,9 @@ function fish_prompt
 end
 
 function fish_greeting
+    # Starting tmux on start
+    tmux
+
     # Clear the screen for a fresh start
     clear
 
