@@ -60,5 +60,6 @@
     spotify
     visual-studio-code
     vlc
+    telegram
     whatsapp
     zotero
