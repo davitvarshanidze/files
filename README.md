@@ -53,6 +53,7 @@
     discord
     docker
     font-noto-sans-mono
+    alacritty
     iterm2
     obs
     qbittorrent
