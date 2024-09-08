@@ -56,12 +56,12 @@ function fish_prompt
     set_color brblack
     echo -n "["(date "+%H:%M")"] "
     
-    set_color yellow
+    set_color white
     echo -n (hostname)
     
-    set_color normal
+    set_color brblack
     echo -n ':'
-    set_color blue
+    set_color green
     echo -n (string replace --regex "^$HOME" "~" $PWD)
     
     set_color green
