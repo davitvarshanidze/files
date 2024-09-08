@@ -48,7 +48,8 @@
     zstd
     
 ==> Casks
-    
+
+    eloston-chromium
     discord
     docker
     font-noto-sans-mono
