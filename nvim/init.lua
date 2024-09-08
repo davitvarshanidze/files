@@ -249,8 +249,7 @@ require("lazy").setup({
 		lazy = false, -- load at start
 		priority = 1000, -- load first
 		config = function()
-			-- vim.cmd([[colorscheme base16-gruvbox-dark-hard]])
-			vim.cmd([[colorscheme vim]])
+			vim.cmd([[colorscheme base16-gruvbox-dark-hard]])
 			vim.o.background = 'dark'
 			-- XXX: hi Normal ctermbg=NONE
 			-- Make comments more prominent -- they are important.
@@ -592,9 +591,6 @@ require("lazy").setup({
             }
         end,
     },
-
--- ADDED LATER IN USE 
-
     -- Mason for LSP, Linters, and Formatters management
     {
         "williamboman/mason.nvim",
@@ -670,7 +666,40 @@ require("lazy").setup({
             })
         end,
     },
-})
+    -- Add nvim-autopairs plugin
+    {
+        'windwp/nvim-autopairs',
+        config = function()
+        require('nvim-autopairs').setup {}
+        end
+    },
+    {
+    'jose-elias-alvarez/null-ls.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local null_ls = require("null-ls")
+
+    -- Setting up formatters
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.prettier,      -- Optional: Include if you use Prettier
+        null_ls.builtins.formatting.clang_format,  -- Formatter for C/C++
+        null_ls.builtins.formatting.rustfmt,       -- Formatter for Rust
+        null_ls.builtins.formatting.black,         -- Formatter for Python
+        null_ls.builtins.formatting.lua_format,    -- Formatter for Lua
+    -- Add more formatters here
+       },
+      })
+	  end,
+	  },
+      })
+    -- Automatically format the code on save
+       vim.api.nvim_create_autocmd("BufWritePre", {
+	  pattern = "*",
+	  callback = function()
+	    vim.lsp.buf.format({ async = false })
+	  end,
+      })
 
 --[[
 
