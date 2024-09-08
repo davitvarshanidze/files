@@ -73,9 +73,6 @@ function fish_prompt
 end
 
 function fish_greeting
-    # Starting tmux on start
-    tmux
-
     # Clear the screen for a fresh start
     clear
 
