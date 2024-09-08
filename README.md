@@ -51,7 +51,6 @@
     
     discord
     docker
-    eloston-chromium
     font-noto-sans-mono
     iterm2
     obs
