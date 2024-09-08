@@ -1,7 +1,6 @@
 -- always set leader first!
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
-
 -------------------------------------------------------------------------------
 --
 -- preferences
@@ -73,7 +72,6 @@ vim.opt.diffopt:append('indent-heuristic')
 -- show more hidden characters
 -- also, show tabs nicer
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
-
 -------------------------------------------------------------------------------
 --
 -- hotkeys
@@ -154,7 +152,6 @@ vim.keymap.set('n', '<leader>m', 'ct_')
 -- F1 is pretty close to Esc, so you probably meant Esc
 vim.keymap.set('', '<F1>', '<Esc>')
 vim.keymap.set('i', '<F1>', '<Esc>')
-
 -------------------------------------------------------------------------------
 --
 -- autocommands
@@ -221,7 +218,6 @@ vim.api.nvim_create_autocmd('Filetype', {
 	command = 'setlocal spell tw=80 colorcolumn=81',
 })
 -- TODO: no autocomplete in text
-
 -------------------------------------------------------------------------------
 --
 -- plugin configuration
