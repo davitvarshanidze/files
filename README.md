@@ -10,7 +10,6 @@
     c-ares
     ca-certificates
     fd
-    fish
     fzf
     gettext
     git
@@ -20,42 +19,26 @@
     libnghttp2
     libuv
     libvterm
-    llvm
     lpeg
     luajit
     luv
-    lz4
-    mpdecimal
     msgpack
     ncurses
-    neofetch
     neovim
     node
     nvm
     openssl@3
     pcre2
-    pipx
-    python@3.12
-    readline
-    screenresolution
-    sqlite
     tmux
     tree-sitter
     unibilium
     utf8proc
-    xz
-    z3
-    zstd
     
 ==> Casks
 
-    eloston-chromium
-    discord
-    docker
     font-noto-sans-mono
-    alacritty
-    obs
-    qbittorrent
+    iterm2
+    rectangle
     scroll-reverser
     spotify
     visual-studio-code
