@@ -6,33 +6,15 @@
 ## Homebrew
 ==> Formulae
 
-    brotli
-    c-ares
-    ca-certificates
     fd
     fzf
-    gettext
     git
     htop
-    icu4c
-    libevent
-    libnghttp2
-    libuv
-    libvterm
-    lpeg
-    luajit
-    luv
-    msgpack
-    ncurses
-    neovim
     node
     nvm
-    openssl@3
-    pcre2
+    neovim
     tmux
-    tree-sitter
-    unibilium
-    utf8proc
+    fish
     
 ==> Casks
 
