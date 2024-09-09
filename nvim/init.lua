@@ -428,4 +428,94 @@ require("lazy").setup({
 	        require('nvim-autopairs').setup {}
 	        end
         },
+    {
+        'neovim/nvim-lspconfig',
+        config = function()
+            local lspconfig = require('lspconfig')
+            
+            lspconfig.clangd.setup {
+                on_attach = function(client, bufnr)
+                    local opts = { noremap=true, silent=true }
+                    local buf_set_keymap = vim.api.nvim_buf_set_keymap
+                    buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                    buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                    buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+                end,
+                flags = {
+                    debounce_text_changes = 150,
+                }
+            }
+        end,
+    },
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        config = function()
+            require("mason").setup()
+        end
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "clangd", "rust_analyzer", "bashls" },
+            })
+            local lspconfig = require("lspconfig")
+            require("mason-lspconfig").setup_handlers {
+                function (server_name)
+                    lspconfig[server_name].setup {}
+                end,
+            }
+        end,
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+        },
+        config = function()
+            local cmp = require'cmp'
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        vim.fn["vsnip#anonymous"](args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                }),
+                sources = cmp.config.sources({
+                    { name = 'nvim_lsp' },
+                }, {
+                    { name = 'buffer' },
+                    { name = 'path' },
+                }),
+            })
+        end,
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {},
+        config = function(_, opts)
+            require "lsp_signature".setup({
+                doc_lines = 0,
+                handler_opts = { border = "none" },
+            })
+        end,
+    },
+    {
+        'windwp/nvim-autopairs',
+        config = function()
+        require('nvim-autopairs').setup {}
+        end
+    },
 	})
