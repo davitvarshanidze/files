@@ -41,7 +41,6 @@
     rectangle
     scroll-reverser
     spotify
-    visual-studio-code
     vlc
     telegram
     whatsapp
