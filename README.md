@@ -1,4 +1,4 @@
-## Commands to make mac keyboard better
+## Terminal commands for mac
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
     defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
