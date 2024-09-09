@@ -37,7 +37,7 @@
 ==> Casks
 
     font-noto-sans-mono
-    iterm2
+    alacritty
     rectangle
     scroll-reverser
     spotify
