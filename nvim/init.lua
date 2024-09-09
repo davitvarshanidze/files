@@ -25,6 +25,7 @@ vim.opt.diffopt:append('iwhite')
 vim.opt.diffopt:append('algorithm:histogram')
 vim.opt.diffopt:append('indent-heuristic')
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.clipboard = "unnamedplus"
 
 vim.keymap.set('', '<C-p>', '<cmd>Files<cr>')
 vim.keymap.set('n', '<leader>;', '<cmd>Buffers<cr>')
@@ -151,7 +152,7 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme vim]])
+			vim.cmd([[colorscheme base16-darkmoss]])
 			vim.o.background = 'dark'
 			local bools = vim.api.nvim_get_hl(0, { name = 'Boolean' })
 			vim.api.nvim_set_hl(0, 'Comment', bools)
@@ -165,6 +166,7 @@ require("lazy").setup({
 		config = function()
 			vim.o.showmode = false
 			vim.g.lightline = {
+				colorscheme = 'one',
 				active = {
 					left = {
 						{ 'mode', 'paste' },
