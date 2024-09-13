@@ -316,48 +316,6 @@ require("lazy").setup({
 			})
 		end
 	},
-
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			'neovim/nvim-lspconfig',
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-		},
-		config = function()
-			local cmp = require'cmp'
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					['<C-b>'] = cmp.mapping.scroll_docs(-4),
-					['<C-f>'] = cmp.mapping.scroll_docs(4),
-					['<C-Space>'] = cmp.mapping.complete(),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<CR>'] = cmp.mapping.confirm({ select = true }),
-				}),
-				sources = cmp.config.sources({
-					{ name = 'nvim_lsp' },
-				}, {
-					{ name = 'path' },
-				}),
-				experimental = {
-					ghost_text = true,
-				},
-			})
-
-			cmp.setup.cmdline(':', {
-				sources = cmp.config.sources({
-					{ name = 'path' }
-				})
-			})
-		end
-	},
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
@@ -470,52 +428,38 @@ require("lazy").setup({
         end,
     },
     {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-        },
-        config = function()
-            local cmp = require'cmp'
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body)
-                    end,
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                }, {
-                    { name = 'buffer' },
-                    { name = 'path' },
-                }),
-            })
-        end,
-    },
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {},
-        config = function(_, opts)
-            require "lsp_signature".setup({
-                doc_lines = 0,
-                handler_opts = { border = "none" },
-            })
-        end,
-    },
-    {
         'windwp/nvim-autopairs',
         config = function()
         require('nvim-autopairs').setup {}
         end
     },
+    {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.5',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+        local telescope = require('telescope')
+        telescope.setup{
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-j>"] = "move_selection_next",
+                        ["<C-k>"] = "move_selection_previous",
+                    },
+                },
+            },
+            pickers = {
+                find_files = {
+                    theme = "dropdown",
+                },
+            },
+        }
+
+        -- Keymaps
+        vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true, silent = true })
+    end
+	},
 	})
