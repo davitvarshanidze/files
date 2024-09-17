@@ -42,6 +42,10 @@ set undofile
 set undodir=~/.vim/undo
 set background=dark
 colorscheme gruvbox
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Compiling with F5
@@ -97,3 +101,32 @@ function! CompileRun()
 endfunction
 
 nnoremap <F5> :call CompileRun()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Function to open URL in Safari, whether inside <a> tag or as plain text
+function! OpenUrlInSafari()
+    " Get the current line
+    let l:line = getline('.')
+
+    " First, try to match a URL inside an <a> tag's href attribute
+    let l:url_in_href = matchstr(l:line, 'href="\zshttps\?:\/\/[^"]\+')
+
+    " Next, try to match a URL inside an <a> tag (even without href)
+    let l:url_in_a_tag = matchstr(l:line, '<a[^>]*>\zshttps\?:\/\/[^<]\+')
+
+    " Finally, check for a plain URL without any tag
+    let l:plain_url = matchstr(l:line, 'https\?:\/\/[a-zA-Z0-9./?=&_-]\+')
+
+    " Determine which URL to open
+    if l:url_in_href != ''
+        execute '!open -a Safari ' . shellescape(l:url_in_href)
+    elseif l:url_in_a_tag != ''
+        execute '!open -a Safari ' . shellescape(l:url_in_a_tag)
+    elseif l:plain_url != ''
+        execute '!open -a Safari ' . shellescape(l:plain_url)
+    else
+        echo "No valid URL found"
+    endif
+endfunction
+
+nnoremap <leader>o :call OpenUrlInSafari()<CR>
