@@ -18,7 +18,7 @@
     
 ==> Casks
 
-    font-noto-sans-mono
+    font-meslo-lg-nerd-font
     alacritty
     rectangle
     scroll-reverser
