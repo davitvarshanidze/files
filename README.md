@@ -1,29 +1,24 @@
-## Terminal commands for mac
+## Better keyboard MacOS
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
-    defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
     
 ## Homebrew
 ==> Formulae
 
-    fd
-    fzf
+    subversion
     git
-    htop
-    node
-    nvm
-    neovim
     tmux
-    fish
+    screen
     
 ==> Casks
 
-    font-meslo-lg-nerd-font
-    alacritty
+    emacs
+    iterm2
+    firefox
+    qbittorrent
     rectangle
     scroll-reverser
-    spotify
     vlc
+    handbrake
     telegram
-    whatsapp
     zotero
