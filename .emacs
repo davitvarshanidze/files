@@ -53,12 +53,11 @@
 (tool-bar-mode 0)
 (show-paren-mode 1)
 (global-display-line-numbers-mode)
-
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore)
 (enable-theme 'custom)
 
-(set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 140)
+(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
 
 (setq backup-directory-alist `(("." . "~/.emacs-saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs-saves/" t)))
