@@ -51,13 +51,10 @@
 ;; general
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-(show-paren-mode 1)
-(global-display-line-numbers-mode)
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore)
 (enable-theme 'custom)
-
-(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
+(set-face-attribute 'default nil :height 140)
 
 (setq backup-directory-alist `(("." . "~/.emacs-saves")))
 (setq auto-save-file-name-transforms `((".*" "~/.emacs-saves/" t)))
@@ -68,5 +65,4 @@
   (interactive)
   (let ((compile-command "g++ -std=c++11 -o raylib_window main.cpp -I/opt/homebrew/Cellar/raylib/5.0/include -L/opt/homebrew/Cellar/raylib/5.0/lib -lraylib -framework CoreVideo -framework IOKit -framework Cocoa -framework OpenGL"))
     (compile compile-command)))
-
 (global-set-key (kbd "<f5>") 'compile-raylib)
