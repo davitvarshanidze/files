@@ -5,7 +5,6 @@
 ## Homebrew
 ==> Formulae
 
-    subversion
     git
     tmux
     screen
@@ -13,8 +12,6 @@
 ==> Casks
 
     emacs
-    iterm2
-    firefox
     qbittorrent
     rectangle
     scroll-reverser
