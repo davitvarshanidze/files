@@ -1,16 +1,28 @@
 
     defaults write -g KeyRepeat -int 1
     defaults write -g ApplePressAndHoldEnabled -bool false
+    defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 #
-    discord
     emacs
+    nvim
+    tmux
+    fish
+    fzf
     font-fira-mono-nerd-font
     ghidra
     gimp
-    iterm2
     karabiner-elements
+    rectangle
+    eloston-chromium
+    discord
+    docker
+    font-noto-sans-mono
     obs
     qbittorrent
-    rectangle
     scroll-reverser
+    spotify
+    visual-studio-code
+    vlc
+    telegram
+    whatsapp
     zotero
