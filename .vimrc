@@ -1,5 +1,6 @@
 let mapleader = " "
 syntax on
+set number
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -73,11 +74,11 @@ function! OpenUrlInSafari()
     let l:plain_url = matchstr(l:line, 'https\?:\/\/[a-zA-Z0-9./?=&_-]\+')
 
     if l:url_in_href != ''
-        execute '!open -a Firefox ' . shellescape(l:url_in_href)
+        execute '!open -a Safari ' . shellescape(l:url_in_href)
     elseif l:url_in_a_tag != ''
-        execute '!open -a Firefox ' . shellescape(l:url_in_a_tag)
+        execute '!open -a Safari ' . shellescape(l:url_in_a_tag)
     elseif l:plain_url != ''
-        execute '!open -a Firefox ' . shellescape(l:plain_url)
+        execute '!open -a Safari ' . shellescape(l:plain_url)
     else
         echo "No valid URL found"
     endif
