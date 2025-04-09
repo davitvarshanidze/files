@@ -68,8 +68,6 @@
 (setq undo-strong-limit 1200000)
 (setq undo-outer-limit 2000000)
 
-;;;;
-
 ;; (global-display-line-numbers-mode 1)
 ;; (setq display-line-numbers-width 3)
 ;; (setq display-line-numbers-widen t)
@@ -80,7 +78,7 @@
 
 ;; (add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
 
-;;;;
+
 
 ;; (global-hl-line-mode t)
 ;; (set-face-attribute 'hl-line nil
@@ -130,8 +128,8 @@
 (setq inhibit-startup-message t)
 ;; (setq initial-scratch-message "Unfortunately, there's radio connected to my brain.")
 
-(global-hl-line-mode t)
-(set-face-attribute 'hl-line nil)
+;; (global-hl-line-mode t)
+;; (set-face-attribute 'hl-line nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -156,24 +154,24 @@
  ;; '(mouse-wheel-scroll-amount '(15))
   )
 
-(custom-set-faces
- '(cursor ((t (:background "#A4C161"))))
- '(default ((t (:background "#1E2022" :foreground "#E5E0DB"))))
- '(font-lock-builtin-face ((t (:foreground "#9b859d"))))
- '(font-lock-comment-face ((t (:foreground "#BA9256"))))
- '(font-lock-constant-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-doc-face ((t (:foreground "gray50"))))
- '(font-lock-function-name-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-variable-name-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-keyword-face ((t (:foreground "#c26230"))))
- '(font-lock-string-face ((t (:foreground "#A4C161"))))
- '(font-lock-type-face ((t (:foreground "#C26230"))))
- '(mode-line ((t (:background "#333333" :foreground "#E5E0DB" :box nil))))
- '(mode-line-inactive ((t (:background "#222222" :foreground "#888888" :box nil))))
- '(minibuffer-prompt ((t (:foreground "#c26230" :weight bold))))
- '(minibuffer ((t (:foreground "#E5E0DB"))))
- '(font-lock-number-face ((t (:foreground "#A4C161"))))
- '(hl-line ((t (:background "#333333")))))
+;; (custom-set-faces
+;;  '(cursor ((t (:background "#A4C161"))))
+;;  '(default ((t (:background "#1E2022" :foreground "#E5E0DB"))))
+;;  '(font-lock-builtin-face ((t (:foreground "#9b859d"))))
+;;  '(font-lock-comment-face ((t (:foreground "#BA9256"))))
+;;  '(font-lock-constant-face ((t (:foreground "#d0d0ff"))))
+;;  '(font-lock-doc-face ((t (:foreground "gray50"))))
+;;  '(font-lock-function-name-face ((t (:foreground "#d0d0ff"))))
+;;  '(font-lock-variable-name-face ((t (:foreground "#d0d0ff"))))
+;;  '(font-lock-keyword-face ((t (:foreground "#c26230"))))
+;;  '(font-lock-string-face ((t (:foreground "#A4C161"))))
+;;  '(font-lock-type-face ((t (:foreground "#C26230"))))
+;;  '(mode-line ((t (:background "#333333" :foreground "#E5E0DB" :box nil))))
+;;  '(mode-line-inactive ((t (:background "#222222" :foreground "#888888" :box nil))))
+;;  '(minibuffer-prompt ((t (:foreground "#c26230" :weight bold))))
+;;  '(minibuffer ((t (:foreground "#E5E0DB"))))
+;;  '(font-lock-number-face ((t (:foreground "#A4C161"))))
+;;  '(hl-line ((t (:background "#333333")))))
 
 ;; handmade-hero theme
 ;; (custom-set-faces
@@ -216,33 +214,35 @@
 ;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
 ;; jonathan blow theme-older
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(default ((t (:foreground "tan" :background "gray16"))))
-;;  '(custom-group-tag-face ((t (:underline t foreground "lightblue"))) t)
-;;  '(custom-variable-tag-face ((t (:underline t foreground "lightblue"))) t)
-;;  '(font-lock-builtin-face ((t nil)))
-;;  '(font-lock-comment-face ((t (:foreground "yellow"))))
-;;  '(font-lock-function-name-face ((((class color) (background dark)) (:foreground "white"))))
-;;  '(font-lock-keyword-face ((t (:foreground "white" background "gray16"))))
-;;  '(font-lock-string-face ((t (:foreground "gray160" :background "gray16"))))
-;;  '(font-lock-variable-name-face ((((class color) (background dark)) (:foreground "white"))))
-;;  '(font-lock-warning-face ((t (:bold t foreground "red"))))
-;;  '(highlight ((t (:foreground "navy blue" :background "darkseagreen2"))))
-;;  '(mode-line ((t (:inverse-video t))))
-;;  '(region ((t (:background "blue"))))
-;;  '(widget-field-face ((t (:foreground "white" :background "darkgray"))) t)
-;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:foreground "tan" :background "gray16"))))
+ '(custom-group-tag-face ((t (:underline t foreground "lightblue"))) t)
+ '(custom-variable-tag-face ((t (:underline t foreground "lightblue"))) t)
+ '(font-lock-builtin-face ((t nil)))
+ '(font-lock-comment-face ((t (:foreground "yellow"))))
+ '(font-lock-function-name-face ((((class color) (background dark)) (:foreground "white"))))
+ '(font-lock-keyword-face ((t (:foreground "white" background "gray16"))))
+ '(font-lock-string-face ((t (:foreground "gray160" :background "gray16"))))
+ '(font-lock-variable-name-face ((((class color) (background dark)) (:foreground "white"))))
+ '(font-lock-warning-face ((t (:bold t foreground "red"))))
+ '(highlight ((t (:foreground "navy blue" :background "darkseagreen2"))))
+ '(mode-line ((t (:inverse-video t))))
+ '(region ((t (:background "blue"))))
+ '(widget-field-face ((t (:foreground "white" :background "darkgray"))) t)
+ '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
-;; (global-font-lock-mode 1)
-;; (set-cursor-color "lightgreen")
+(global-font-lock-mode 1)
+(set-cursor-color "lightgreen")
 ;; (set-background-color "#072626")
 (set-face-attribute 'default nil :height 160)
-;; (set-face-attribute 'default nil :font "FiraMono Nerd Font Medium" :height 160)
-;;(set-face-attribute 'default nil :font "Inconsolata Nerd Font Medium" :height 180)
+(set-face-attribute 'default nil :font "FiraMono Nerd Font Medium" :height 160)
+;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Medium" :height 140)
+;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font Medium" :height 180)
+;; (set-face-attribute 'default nil :font "D2codingligature Nerd Font" :height 180)
 
 ;(set-face-foreground 'font-lock-builtin-face "lightgreen")
 
