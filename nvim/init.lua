@@ -26,11 +26,11 @@ vim.opt.foldlevelstart = 99
 -- keep more context on screen while scrolling
 vim.opt.scrolloff = 2
 -- never show me line breaks if they're not there
-vim.opt.wrap = true
+vim.opt.wrap = false
 -- always draw sign column. prevents buffer moving when adding/deleting sign
-vim.opt.signcolumn = 'no'
+vim.opt.signcolumn = 'yes'
 -- sweet sweet relative line numbers
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 -- and show the absolute line number for the current line
 vim.opt.number = true
 -- keep current content top + left when splitting
@@ -69,10 +69,11 @@ vim.opt.diffopt:append('indent-heuristic')
 -- show a column at 80 characters as a guide for long lines
 -- vim.opt.colorcolumn = '80'
 --- except in Rust where the rule is 100 characters
--- vim.api.nvim_create_autocmd('Filetype', { pattorn = 'rust', command = 'set colorcolumn=100' })
+vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
 -- show more hidden characters
 -- also, show tabs nicer
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
+vim.opt.clipboard=unnamedplus
 
 -------------------------------------------------------------------------------
 --
@@ -121,7 +122,7 @@ vim.keymap.set('', 'L', '$')
 vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
 vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
 -- <leader><leader> toggles between buffers
-vim.keymap.set('n', '<leader><leader>', '<c-^>')
+-- vim.keymap.set('n', '<leader><leader>', '<c-^>')
 -- <leader>, shows/hides hidden characters
 vim.keymap.set('n', '<leader>,', ':set invlist<cr>')
 -- always center search results
@@ -249,7 +250,7 @@ require("lazy").setup({
 		lazy = false, -- load at start
 		priority = 1000, -- load first
 		config = function()
-			vim.cmd([[colorscheme base16-gruvbox-dark-hard]])
+			vim.cmd([[colorscheme gruvbox-dark-hard]])
 			vim.o.background = 'dark'
 			-- XXX: hi Normal ctermbg=NONE
 			-- Make comments more prominent -- they are important.
@@ -329,29 +330,34 @@ require("lazy").setup({
 		end
 	},
 	-- fzf support for ^p
-	{
-		'junegunn/fzf.vim',
-		    dependencies = {
-		        { 'junegunn/fzf', build = './install --bin' },  -- Let lazy.nvim manage fzf install
-		    },
-		    config = function()
-		        -- stop putting a giant window over my editor
-		        vim.g.fzf_layout = { down = '~20%' }
-		        -- when using :Files, pass the file list through proximity-sort
-		        function list_cmd()
-		            local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-		            if base == '.' then
-		                return 'fd --type file --follow'
-		            else
-		                return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
-		            end
-		        end
-		        -- Custom command for :Files using proximity sort
-		        vim.api.nvim_create_user_command('Files', function(arg)
-		            vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
-		        end, { bang = true, nargs = '?', complete = "dir" })
-		    end
-	},
+-- 	{
+-- 		'junegunn/fzf.vim',
+-- 		dependencies = {
+-- 			{ 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
+-- 		},
+-- 		config = function()
+-- 			-- stop putting a giant window over my editor
+-- 			vim.g.fzf_layout = { down = '~20%' }
+-- 			-- when using :Files, pass the file list through
+-- 			--
+-- 			--   https://github.com/jonhoo/proximity-sort
+-- 			--
+-- 			-- to prefer files closer to the current file.
+-- 			function list_cmd()
+-- 				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+-- 				if base == '.' then
+-- 					-- if there is no current file,
+-- 					-- proximity-sort can't do its thing
+-- 					return 'fd --hidden --type file --follow'
+-- 				else
+-- 					return vim.fn.printf('fd --hidden --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+-- 				end
+-- 			end
+-- 			vim.api.nvim_create_user_command('Files', function(arg)
+-- 				vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--scheme=path --tiebreak=index' }, arg.bang)
+-- 			end, { bang = true, nargs = '?', complete = "dir" })
+-- 		end
+-- 	},
 	-- LSP
 	{
 		'neovim/nvim-lspconfig',
@@ -399,6 +405,26 @@ require("lazy").setup({
 			end
 			if configs.bash_lsp then
 				lspconfig.bash_lsp.setup {}
+			end
+
+			-- Ruff for Python
+			local configs = require 'lspconfig.configs'
+			if not configs.ruff_lsp and vim.fn.executable('ruff-lsp') == 1 then
+				configs.ruff_lsp = {
+					default_config = {
+						cmd = { 'ruff-lsp' },
+						filetypes = { 'python' },
+						root_dir = require('lspconfig').util.find_git_ancestor,
+						init_options = {
+							settings = {
+								args = {}
+							}
+						}
+					}
+				}
+			end
+			if configs.ruff_lsp then
+				lspconfig.ruff_lsp.setup {}
 			end
 
 			-- Global mappings.
@@ -548,9 +574,35 @@ require("lazy").setup({
 			vim.g.rust_clip_command = 'wl-copy'
 		end
 	},
-	-- fish
-	'khaveesh/vim-fish-syntax',
-	-- markdown
+	{
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.5',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+        local telescope = require('telescope')
+        telescope.setup{
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-j>"] = "move_selection_next",
+                        ["<C-k>"] = "move_selection_previous",
+                    },
+                },
+            },
+            pickers = {
+                find_files = {
+                    theme = "dropdown",
+                },
+            },
+        }
+
+        -- Keymaps
+        vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true, silent = true })
+    end
+	},
 	{
 		'plasticboy/vim-markdown',
 		ft = { "markdown" },
@@ -569,137 +621,7 @@ require("lazy").setup({
 			vim.g.vim_markdown_auto_insert_bullets = 0
 		end
 	},
-	-- LSP configuration for clangd (C/C++)
-    {
-        'neovim/nvim-lspconfig',
-        config = function()
-            local lspconfig = require('lspconfig')
-            
-            -- C/C++ using clangd
-            lspconfig.clangd.setup {
-                on_attach = function(client, bufnr)
-                    -- Keybindings for LSP functionality
-                    local opts = { noremap=true, silent=true }
-                    local buf_set_keymap = vim.api.nvim_buf_set_keymap
-                    buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-                    buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-                    buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-                end,
-                flags = {
-                    debounce_text_changes = 150,
-                }
-            }
-        end,
-    },
-    -- Mason for LSP, Linters, and Formatters management
-    {
-        "williamboman/mason.nvim",
-        build = ":MasonUpdate", -- Auto-update Mason
-        config = function()
-            require("mason").setup()
-        end
-    },
-
-    -- Mason LSP Config to bridge Mason with lspconfig
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = { "clangd", "rust_analyzer", "bashls" }, -- Add language servers you need
-            })
-
-            local lspconfig = require("lspconfig")
-
-            -- Automatically setup LSP servers installed by Mason
-            require("mason-lspconfig").setup_handlers {
-                -- Default handler for all servers
-                function (server_name)
-                    lspconfig[server_name].setup {}
-                end,
-            }
-        end,
-    },
-    -- Autocompletion setup using nvim-cmp
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter", -- Lazy load on insert mode
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-        },
-        config = function()
-            local cmp = require'cmp'
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body)
-                    end,
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                }, {
-                    { name = 'buffer' },
-                    { name = 'path' },
-                }),
-            })
-        end,
-    },
-
-    -- Inline function signatures while typing
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {},
-        config = function(_, opts)
-            require "lsp_signature".setup({
-                doc_lines = 0,
-                handler_opts = { border = "none" },
-            })
-        end,
-    },
-    -- Add nvim-autopairs plugin
-    {
-        'windwp/nvim-autopairs',
-        config = function()
-        require('nvim-autopairs').setup {}
-        end
-    },
-    {
-    'jose-elias-alvarez/null-ls.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local null_ls = require("null-ls")
-
-    -- Setting up formatters
-    null_ls.setup({
-      sources = {
-        null_ls.builtins.formatting.prettier,      -- Optional: Include if you use Prettier
-        null_ls.builtins.formatting.clang_format,  -- Formatter for C/C++
-        null_ls.builtins.formatting.rustfmt,       -- Formatter for Rust
-        null_ls.builtins.formatting.black,         -- Formatter for Python
-        null_ls.builtins.formatting.lua_format,    -- Formatter for Lua
-    -- Add more formatters here
-       },
-      })
-	  end,
-	  },
-      })
-    -- Automatically format the code on save
-       vim.api.nvim_create_autocmd("BufWritePre", {
-	  pattern = "*",
-	  callback = function()
-	    vim.lsp.buf.format({ async = false })
-	  end,
-      })
+})
 
 --[[
 
