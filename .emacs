@@ -1,4 +1,3 @@
-;; Navigation
 (global-set-key [f12] 'eval-buffer)
 (global-set-key [f1] 'recompile)
 (global-set-key [f5] 'use-run)
@@ -13,25 +12,42 @@
 (global-set-key [?\C-3] 'split-window-horizontally)
 (global-set-key [?\C-,] 'beginning-of-buffer)
 (global-set-key [?\C-.] 'end-of-buffer)
+
 (global-set-key (kbd "C-o") 'other-window)
-(global-set-key (kbd "C-<left>") 'previous-buffer)
-(global-set-key (kbd "C-<right>") 'next-buffer)
+
+(global-set-key (kbd "C-<right>") 'forward-word)
+(global-set-key (kbd "C-<left>") 'backward-word)
+(global-set-key (kbd "C-w") 'kill-word)
+
+(global-set-key (kbd "s-<left>") 'previous-buffer)
+(global-set-key (kbd "s-<right>") 'next-buffer)
+
 (global-set-key (kbd "s-x") 'kill-whole-line)
+
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+
 (global-set-key (kbd "C-h") 'scroll-down-command)
 (global-set-key (kbd "C-g") 'scroll-up-command)
-(global-set-key (kbd "C-w") 'scroll-down-line)
+(global-set-key (kbd "C-r") 'scroll-down-line)
 (global-set-key (kbd "C-v") 'scroll-up-line)
+
 (global-set-key [?\C-u] 'upcase-word)
 (define-key global-map [C-backspace] 'kill-word)
 (global-set-key [C-return] 'save-buffer)
+
 (global-set-key (kbd "s-<up>") 'beginning-of-buffer)
 (global-set-key (kbd "s-<down>") 'end-of-buffer)
+
 (global-set-key (kbd "C-t") 'goto-line)
+
 (global-set-key (kbd "M-o") 'occur)
+
 (global-unset-key (kbd "M-x"))
+
 (global-set-key (kbd "C-x C-x") 'execute-extended-command)
+
 (global-unset-key (kbd "C-k"))
+
 (global-set-key (kbd "C-q") 'kill-line)
 
 (defun move-line-up ()
