@@ -86,17 +86,19 @@
 (setq undo-strong-limit 1200000)
 (setq undo-outer-limit 2000000)
 
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-width 3)
-(setq display-line-numbers-widen t)
+;;;;
 
-(add-hook 'window-configuration-change-hook
-          (lambda ()
-            (setq display-line-numbers-width 3)))
+;; (global-display-line-numbers-mode 1)
+;; (setq display-line-numbers-width 3)
+;; (setq display-line-numbers-widen t)
 
-(add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
+;; (add-hook 'window-configuration-change-hook
+;;           (lambda ()
+;;             (setq display-line-numbers-width 3)))
 
+;; (add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
 
+;;;;
 
 (global-hl-line-mode t)
 (set-face-attribute 'hl-line nil)
@@ -190,27 +192,27 @@
 ;; (set-face-attribute 'default nil :height 140)
 
 ;; my own theme favorite one
-(custom-set-faces
- '(cursor ((t (:background "#A4C161"))))
- '(default ((t (:background "#1E2022" :foreground "#E5E0DB"))))
- '(font-lock-builtin-face ((t (:foreground "#9b859d"))))
- '(font-lock-comment-face ((t (:foreground "#BA9256"))))
- '(font-lock-constant-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-doc-face ((t (:foreground "gray50"))))
- '(font-lock-function-name-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-variable-name-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-keyword-face ((t (:foreground "#c26230"))))
- '(font-lock-string-face ((t (:foreground "#A4C161"))))
- '(font-lock-type-face ((t (:foreground "#C26230"))))
- '(mode-line ((t (:background "#333333" :foreground "#E5E0DB" :box nil))))
- '(mode-line-inactive ((t (:background "#222222" :foreground "#888888" :box nil))))
- '(minibuffer-prompt ((t (:foreground "#c26230" :weight bold))))
- '(minibuffer ((t (:foreground "#E5E0DB"))))
- '(font-lock-number-face ((t (:foreground "#A4C161"))))
- '(hl-line ((t (:background "#333333")))))
+;; (custom-set-faces
+;;  '(cursor ((t (:background "#A4C161"))))
+;;  '(default ((t (:background "#1E2022" :foreground "#E5E0DB"))))
+;;  '(font-lock-builtin-face ((t (:foreground "#9b859d"))))
+;;  '(font-lock-comment-face ((t (:foreground "#BA9256"))))
+;;  '(font-lock-constant-face ((t (:foreground "#d0d0ff"))))
+;;  '(font-lock-doc-face ((t (:foreground "gray50"))))
+;;  '(font-lock-function-name-face ((t (:foreground "#d0d0ff"))))
+;;  '(font-lock-variable-name-face ((t (:foreground "#d0d0ff"))))
+;;  '(font-lock-keyword-face ((t (:foreground "#c26230"))))
+;;  '(font-lock-string-face ((t (:foreground "#A4C161"))))
+;;  '(font-lock-type-face ((t (:foreground "#C26230"))))
+;;  '(mode-line ((t (:background "#333333" :foreground "#E5E0DB" :box nil))))
+;;  '(mode-line-inactive ((t (:background "#222222" :foreground "#888888" :box nil))))
+;;  '(minibuffer-prompt ((t (:foreground "#c26230" :weight bold))))
+;;  '(minibuffer ((t (:foreground "#E5E0DB"))))
+;;  '(font-lock-number-face ((t (:foreground "#A4C161"))))
+;;  '(hl-line ((t (:background "#333333")))))
 
-(global-font-lock-mode 1)
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Medium" :height 140)
+;; (global-font-lock-mode 1)
+;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Medium" :height 140)
 
 ;; testing some colors
 ;; (custom-set-faces
@@ -233,22 +235,22 @@
 ;;  '(hl-line ((t (:background "midnight blue")))))
  
 ;; handmade-hero theme
-;; (custom-set-faces
-;;  '(cursor ((t (:background "#40ff40"))))
-;;  '(default ((t (:background "#161616" :foreground "burlywood3"))))
-;;  '(font-lock-builtin-face ((t (:foreground "#dab99f"))))
-;;  '(font-lock-comment-face ((t (:foreground "gray50"))))
-;;  '(font-lock-constant-face ((t (:foreground "olive drab"))))
-;;  '(font-lock-doc-face ((t (:foreground "gray50"))))
-;;  '(font-lock-function-name-face ((t (:foreground "burlywood3"))))
-;;  '(font-lock-keyword-face ((t (:foreground "DarkGoldenrod3"))))
-;;  '(font-lock-string-face ((t (:foreground "olive drab"))))
-;;  '(font-lock-type-face ((t (:foreground "burlywood3"))))
-;;  '(font-lock-variable-name-face ((t (:foreground "burlywood3"))))
-;;  '(handmade-important-face ((t (:foreground "Yellow":weight bold :underline t))))
-;;  '(handmade-note-face ((t (:foreground "Green" :weight bold :underline t))))
-;;  '(handmade-todo-face ((t (:foreground "Red" :weight bold :underline t))))
-;;  '(hl-line ((t (:background "midnight blue")))))
+(custom-set-faces
+ '(cursor ((t (:background "#40ff40"))))
+ '(default ((t (:background "#161616" :foreground "burlywood3"))))
+ '(font-lock-builtin-face ((t (:foreground "#dab99f"))))
+ '(font-lock-comment-face ((t (:foreground "gray50"))))
+ '(font-lock-constant-face ((t (:foreground "olive drab"))))
+ '(font-lock-doc-face ((t (:foreground "gray50"))))
+ '(font-lock-function-name-face ((t (:foreground "burlywood3"))))
+ '(font-lock-keyword-face ((t (:foreground "DarkGoldenrod3"))))
+ '(font-lock-string-face ((t (:foreground "olive drab"))))
+ '(font-lock-type-face ((t (:foreground "burlywood3"))))
+ '(font-lock-variable-name-face ((t (:foreground "burlywood3"))))
+ '(handmade-important-face ((t (:foreground "Yellow":weight bold :underline t))))
+ '(handmade-note-face ((t (:foreground "Green" :weight bold :underline t))))
+ '(handmade-todo-face ((t (:foreground "Red" :weight bold :underline t))))
+ '(hl-line ((t (:background "midnight blue")))))
 
 ;; jonathan blow theme-latest
 ;; (custom-set-faces
@@ -294,10 +296,10 @@
 ;;  '(widget-field-face ((t (:foreground "white" :background "darkgray"))) t)
 ;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
-;; (global-font-lock-mode 1)
+(global-font-lock-mode 1)
 ;; (set-cursor-color "lightgreen")
 ;; (set-background-color "#072626")
-;; (set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 140)
 ;; (set-face-attribute 'default nil :font "FiraMono Nerd Font Medium" :height 160)
 ;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Medium" :height 140)
 ;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font Medium" :height 180)
