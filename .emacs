@@ -70,7 +70,7 @@
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-;; (scroll-bar-mode -1)
+(scroll-bar-mode -1)
 (setq debug-on-error t)
 (setq truncate-partial-width-windows nil)
 (setq make-backup-files nil)
@@ -84,21 +84,20 @@
 (setq undo-strong-limit 1200000)
 (setq undo-outer-limit 2000000)
 
-;; (global-display-line-numbers-mode 1)
-;; (setq display-line-numbers-width 3)
-;; (setq display-line-numbers-widen t)
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-width 3)
+(setq display-line-numbers-widen t)
 
-;; (add-hook 'window-configuration-change-hook
-;;           (lambda ()
-;;             (setq display-line-numbers-width 3)))
+(add-hook 'window-configuration-change-hook
+          (lambda ()
+            (setq display-line-numbers-width 3)))
 
-;; (add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
+(add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
 
 
 
-;; (global-hl-line-mode t)
-;; (set-face-attribute 'hl-line nil
-;;                     :background "#073642")
+(global-hl-line-mode t)
+(set-face-attribute 'hl-line nil)
 
 ;;;;
 
@@ -167,6 +166,28 @@
  '(make-backup-files nil)
  '(package-selected-packages '(theme-buffet)))
 
+;; ;; my own theme, inspired by deep
+;; (custom-set-faces
+;;  '(cursor ((t (:background "green"))))
+;;  '(default ((t (:background "black" :foreground "ivory2"))))
+;;  '(font-lock-builtin-face ((t (:foreground "thistle"))))
+;;  '(font-lock-comment-face ((t (:foreground "dim gray"))))
+;;  '(font-lock-constant-face ((t (:foreground "systemindigocolor"))))
+;;  '(font-lock-doc-face ((t (:foreground "gray50"))))
+;;  '(font-lock-function-name-face ((t (:foreground "systemmintcolor"))))
+;;  '(font-lock-keyword-face ((t (:foreground "systemtealcolor"))))
+;;  '(font-lock-string-face ((t (:foreground "cornflower blue"))))
+;;  '(font-lock-type-face ((t (:foreground "systemmintcolor"))))
+;;  '(font-lock-variable-name-face ((t (:foreground "systemmintcolor"))))
+;;  '(handmade-important-face ((t (:foreground "Yellow":weight bold :underline t))))
+;;  '(handmade-note-face ((t (:foreground "Green" :weight bold :underline t))))
+;;  '(handmade-todo-face ((t (:foreground "Red" :weight bold :underline t))))
+;;  '(hl-line ((t (:background "midnight blue")))))
+
+;; (global-font-lock-mode 1)
+;; (set-face-attribute 'default nil :height 140)
+
+;; my own theme favorite one
 (custom-set-faces
  '(cursor ((t (:background "#A4C161"))))
  '(default ((t (:background "#1E2022" :foreground "#E5E0DB"))))
@@ -200,7 +221,7 @@
 ;;  '(font-lock-type-face ((t (:foreground "burlywood3"))))
 ;;  '(font-lock-variable-name-face ((t (:foreground "burlywood3"))))
 ;;  '(handmade-important-face ((t (:foreground "Yellow":weight bold :underline t))))
-;;  '(handmade-note-face ((t (:foreground "DarkGreen" :weight bold :underline t))))
+;;  '(handmade-note-face ((t (:foreground "Green" :weight bold :underline t))))
 ;;  '(handmade-todo-face ((t (:foreground "Red" :weight bold :underline t))))
 ;;  '(hl-line ((t (:background "midnight blue")))))
 
@@ -249,7 +270,7 @@
 ;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
 (global-font-lock-mode 1)
-(set-cursor-color "lightgreen")
+;; (set-cursor-color "lightgreen")
 ;; (set-background-color "#072626")
 (set-face-attribute 'default nil :height 140)
 ;; (set-face-attribute 'default nil :font "FiraMono Nerd Font Medium" :height 160)
