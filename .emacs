@@ -70,7 +70,7 @@
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1)
 (setq debug-on-error t)
 (setq truncate-partial-width-windows nil)
 (setq make-backup-files nil)
@@ -206,6 +206,29 @@
  '(minibuffer ((t (:foreground "#E5E0DB"))))
  '(font-lock-number-face ((t (:foreground "#A4C161"))))
  '(hl-line ((t (:background "#333333")))))
+
+(global-font-lock-mode 1)
+(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Medium" :height 140)
+
+;; testing some colors
+;; (custom-set-faces
+;;  '(cursor ((t (:background "lightgreen"))))
+;;  '(default ((t (:background "gray8" :foreground "burlywood3"))))
+;;  '(font-lock-builtin-face ((t (:foreground "lemonchiffon3"))))
+;;  '(font-lock-comment-face ((t (:foreground "gold2"))))
+;;  '(font-lock-constant-face ((t (:foreground "beige"))))
+;;  '(font-lock-doc-face ((t (:foreground "gray50"))))
+;;  '(font-lock-function-name-face ((t (:foreground "lightcoral"))))
+;;  '(font-lock-variable-name-face ((t (:foreground "lightcoral"))))
+;;  '(font-lock-keyword-face ((t (:foreground "#c26230"))))
+;;  '(font-lock-string-face ((t (:foreground "#A4C161"))))
+;;  '(font-lock-type-face ((t (:foreground "#C26230"))))
+;;  '(mode-line ((t (:background "burlywood3" :foreground "gray8" :box nil))))
+;;  '(mode-line-inactive ((t (:background "#222222" :foreground "#888888" :box nil))))
+;;  '(minibuffer-prompt ((t (:foreground "#A4C161" :weight bold))))
+;;  '(minibuffer ((t (:foreground "#E5E0DB"))))
+;;  '(font-lock-number-face ((t (:foreground "#A4C161"))))
+;;  '(hl-line ((t (:background "midnight blue")))))
  
 ;; handmade-hero theme
 ;; (custom-set-faces
@@ -247,7 +270,7 @@
 ;;  '(widget-field-face ((t (:foreground "white"))) t)
 ;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
-;; ;; jonathan blow theme-older
+;; jonathan blow theme-older
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -269,10 +292,10 @@
 ;;  '(widget-field-face ((t (:foreground "white" :background "darkgray"))) t)
 ;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
-(global-font-lock-mode 1)
+;; (global-font-lock-mode 1)
 ;; (set-cursor-color "lightgreen")
 ;; (set-background-color "#072626")
-(set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'default nil :height 140)
 ;; (set-face-attribute 'default nil :font "FiraMono Nerd Font Medium" :height 160)
 ;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Medium" :height 140)
 ;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font Medium" :height 180)
