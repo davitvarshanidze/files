@@ -518,10 +518,10 @@
   :group 'auto-complete)
 
 (defcustom ac-auto-start t
-  "Non-nil means completion will be started automatically.
-Positive integer means if a length of a word you entered is larger than the value,
-completion will be started automatically.
-If you specify `nil', never be started automatically."
+   "Non-nil means completion will be started automatically.
+   Positive integer means if a length of a word you entered is larger than the value,
+   completion will be started automatically.
+   If you specify `nil', never be started automatically."
   :group 'auto-complete)
 
 (defcustom ac-dwim t
@@ -581,23 +581,23 @@ Or, `ac-menu' grows backward.")
 
 (defvar ac-find-function 'ac-default-find
   "When `auto-complete-mode' finds it can start completion
-or update candidates, it will call this function to find a
-start point of the completion target.
+   or update candidates, it will call this function to find a
+   start point of the completion target.
 
-If this function returns an integer, `auto-complete-mode'
-will set the substring between the point and current point to `ac-target'.
-And also it will start completion or update candidates by using
-the `ac-target'.
+   If this function returns an integer, `auto-complete-mode'
+   will set the substring between the point and current point to `ac-target'.
+   And also it will start completion or update candidates by using
+   the `ac-target'.
 
-If this function returns `nil', `auto-complete-mode'
-ignore starting completion or stop completing.")
+   If this function returns `nil', `auto-complete-mode'
+   ignore starting completion or stop completing.")
 
 (defvar ac-init-function 'ac-sources-init
   "This function will be called when candidate menu is setupped.")
 
 (defvar ac-candidate-function 'ac-sources-candidate
   "This function can return candidates as list by
-using the `TARGET' that is given as a first argument.")
+   using the `TARGET' that is given as a first argument.")
 
 (defvar ac-complete-mode-map
   (let ((map (make-sparse-keymap)))
@@ -1147,67 +1147,65 @@ using the `TARGET' that is given as a first argument.")
 (provide 'auto-complete)
 
 ;; OS
-(defvar run-unix
-  (or (equal system-type 'gnu/linux)
-      (equal system-type 'usg-unix-v)))
+;; (defvar run-unix
+;;   (or (equal system-type 'gnu/linux)
+;;       (equal system-type 'usg-unix-v)))
 
-(defvar run-w32
-  (and (null run-unix)
-       (or (equal system-type 'windows-nt)
-           (equal system-type 'ms-dos))))
+;; (defvar run-w32
+;;   (and (null run-unix)
+;;        (or (equal system-type 'windows-nt)
+;;            (equal system-type 'ms-dos))))
 
 ;; (defvar run-darwin
 ;;   (equal system-type 'darwin))
 
 ;; Emacs version
-(defvar run-emacs20
-  (and (equal emacs-major-version 20)
-       (null (featurep 'xemacs))))
+;; (defvar run-emacs20
+;;   (and (equal emacs-major-version 20)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-emacs21
-  (and (equal emacs-major-version 21)
-       (null (featurep 'xemacs))))
+;; (defvar run-emacs21
+;;   (and (equal emacs-major-version 21)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-emacs22
-  (and (equal emacs-major-version 22)
-       (null (featurep 'xemacs))))
+;; (defvar run-emacs22
+;;   (and (equal emacs-major-version 22)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-emacs23
-  (and (equal emacs-major-version 23)
-       (null (featurep 'xemacs))))
+;; (defvar run-emacs23
+;;   (and (equal emacs-major-version 23)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-emacs24
-  (and (equal emacs-major-version 24)
-       (null (featurep 'xemacs))))
+;; (defvar run-emacs24
+;;   (and (equal emacs-major-version 24)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-emacs25
-  (and (equal emacs-major-version 25)
-       (null (featurep 'xemacs))))
+;; (defvar run-emacs25
+;;   (and (equal emacs-major-version 25)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-meadow (featurep 'meadow))
+;; (defvar run-emacs30.1
+;;   (and (equal emacs-major-version 30.1)
+;;        (null (featurep 'xemacs))))
 
-(defvar run-meadow1 (and run-meadow run-emacs20))
+;; (defvar run-meadow (featurep 'meadow))
 
-(defvar run-meadow2 (and run-meadow run-emacs21))
+;; (defvar run-meadow1 (and run-meadow run-emacs30.1))
 
-(defvar run-meadow2 (and run-meadow run-emacs22))
+;; ;; (defvar run-meadow2 (and run-meadow run-emacs21))
 
-(defvar run-xemacs (featurep 'xemacs))
+;; ;; (defvar run-meadow2 (and run-meadow run-emacs22))
 
-(defvar run-xemacs-no-mule
-  (and run-xemacs (not (featurep 'mule))))
+;; (defvar run-xemacs (featurep 'xemacs))
 
-(global-font-lock-mode t)
+;; (defvar run-xemacs-no-mule
+;;   (and run-xemacs (not (featurep 'mule))))
+
 (setq font-lock-maximum-decoration t)
-
 (setq scroll-conservatively 1)
-
 (setq next-line-add-newlines nil)
-
 (setq visible-bell t)
-
 (fset 'yes-or-no-p 'y-or-n-p)
-
 (cd "~")
 
 ;; @date
