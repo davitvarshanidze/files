@@ -1,3 +1,5 @@
+;; Copyright (c) 2025 Davit Varshanidze
+
 (global-set-key [f12] 'eval-buffer)
 (global-set-key [f1] 'recompile)
 (global-set-key [f5] 'use-run)
