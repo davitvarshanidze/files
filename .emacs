@@ -1,5 +1,3 @@
-;; Copyright (c) 2025 Davit Varshanidze
-
 (global-set-key [f12] 'eval-buffer)
 (global-set-key [f1] 'recompile)
 (global-set-key [f5] 'use-run)
@@ -72,7 +70,7 @@
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-;; (scroll-bar-mode -1)
+(scroll-bar-mode -1)
 (setq debug-on-error t)
 (setq truncate-partial-width-windows nil)
 (setq make-backup-files nil)
@@ -145,6 +143,7 @@
 (setq frame-title-format `(" %b", " @ ",(system-name) " -- Emacs " ,emacs-version))
 
 (setq inhibit-startup-message t)
+(setq initial-scratch-message "")
 ;; (setq initial-scratch-message "Unfortunately, there's radio connected to my brain.")
 
 ;; (global-hl-line-mode t)
@@ -170,7 +169,7 @@
  '(make-backup-files nil)
  '(package-selected-packages '(theme-buffet)))
 
-;; ;; my own theme, inspired by deep
+;; my own theme, inspired by deep
 ;; (custom-set-faces
 ;;  '(cursor ((t (:background "green"))))
 ;;  '(default ((t (:background "black" :foreground "ivory2"))))
@@ -296,6 +295,7 @@
 ;;  '(widget-field-face ((t (:foreground "white" :background "darkgray"))) t)
 ;;  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
+;; (load-theme 'modus-vivendi t)
 (global-font-lock-mode 1)
 ;; (set-cursor-color "lightgreen")
 ;; (set-background-color "#072626")
@@ -1232,3 +1232,82 @@ Or, `ac-menu' grows backward.")
 
 ;; (filename~)
 (setq make-backup-files nil)
+
+;;;; Packages ;;;;
+
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; Use use-package with straight
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+
+;; Theme
+;; (use-package doom-themes
+;;   :config (load-theme 'doom-one t))
+
+;; (use-package doom-modeline
+;;   :init (doom-modeline-mode 1))
+
+;; Company for auto-completion
+(use-package company
+  :init (global-company-mode)
+  :config
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 1))
+
+;; LSP + Clangd
+(use-package lsp-mode
+  :hook ((c++-mode . lsp)
+         (c-mode . lsp))
+  :commands lsp
+  :config
+  (setq lsp-enable-snippet t)
+  (setq lsp-clients-clangd-executable "clangd"))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable t
+        lsp-ui-sideline-enable t))
+
+;; DAP for debugging (GDB)
+(use-package dap-mode
+  :after lsp-mode
+  :config
+  (dap-auto-configure-mode)
+  (require 'dap-gdb-lldb)
+  (dap-gdb-lldb-setup))
+
+;; Flycheck for diagnostics
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+;; Clang-format integration
+(use-package clang-format
+  :bind (("C-c f" . clang-format-buffer)))
+
+(require 'dap-gdb-lldb)
+
+(dap-register-debug-template "GDB Run C++"
+  (list :type "gdb"
+        :request "launch"
+        :name "GDB::Run"
+        :gdbpath "gdb"
+        :target nil ;; we'll set this interactively
+        :cwd nil))  ;; current project dir
+
+(add-hook 'dap-stopped-hook
+          (lambda (arg) (call-interactively #'dap-hydra)))
