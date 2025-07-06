@@ -92,7 +92,7 @@
 (global-hl-line-mode t)
 (set-face-attribute 'hl-line nil)
 
-;; Theme
+;; Custom set variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -113,6 +113,7 @@
  '(make-backup-files nil)
  '(package-selected-packages '(theme-buffet)))
 
+;; Custom set faces
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
