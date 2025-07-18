@@ -150,6 +150,36 @@
 ;; (set-face-attribute 'default nil :height 140)
 (set-face-attribute 'default nil :font "BlexMono Nerd Font Medium" :height 160)
 
+;; Enable mouse support
+(unless window-system
+(require 'mouse)
+(xterm-mouse-mode t)
+(global-set-key [mouse-4] '(lambda ()
+(interactive)
+(scroll-down 1)))
+(global-set-key [mouse-5] '(lambda ()
+(interactive)
+(scroll-up 1)))
+(defun track-mouse (e))
+(setq mouse-sel-mode t)
+)
+
+;; Displays date
+(setq display-time-day-and-date t)
+(setq display-time-24hr-format t)
+(display-time)
+(setq european-calendar-style t)
+
+;; Show parens immediately
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
+;; Configure indent for C
+(c-set-offset 'substatement-open 0)
+(setq-default c-basic-offset 4
+	      tab-width 4
+	      indent-tabs-mode t)
+
 ;; Bright-red TODOs
  (setq fixme-modes '(c++-mode c-mode emacs-lisp-mode))
  (make-face 'font-lock-fixme-face)
@@ -272,3 +302,28 @@
 (setq shell-command-switch "-c")             ;; Use async shell commands
 (setq recentf-max-saved-items 100)           ;; Limit the number of recent files tracked
 (setq redisplay-dont-pause t)                ;; Prevent Emacs from pausing during redisplay
+
+;; 42 Header
+(defun my/insert-42-header ()
+  "Insert a 42-style header at the top of the file."
+  (interactive)
+  (let* ((filename (or (buffer-file-name) (buffer-name)))
+         (file (file-name-nondirectory filename))
+         (login "davitvarshanidze")
+         (email "davit@student.42.fr")
+         (now (format-time-string "%Y/%m/%d %H:%M:%S")))
+    (save-excursion
+      (goto-char (point-min))
+      (insert (format "/******************************************************************************/\n"))
+      (insert (format "/*                                                                            */\n"))
+      (insert (format "/*                                                        :::      ::::::::   */\n"))
+      (insert (format "/*   %-51s:+:      :+:    :+:   */\n" file))
+      (insert (format "/*                                                    +:+ +:+         +:+     */\n"))
+      (insert (format "/*   By: %-42s+#+  +:+        +#+        */\n" (format "%s <%s>" login email)))
+      (insert (format "/*                                                +#+#+#+#+#+   +#+           */\n"))
+      (insert (format "/*   Created: %-41s#+#    #+#             */\n" now))
+      (insert (format "/*   Updated: %-40s###   ########.fr       */\n" now))
+      (insert (format "/*                                                                            */\n"))
+      (insert (format "/******************************************************************************/\n\n")))))
+
+(global-set-key (kbd "C-c h") 'my/insert-42-header)
