@@ -10,25 +10,11 @@ defaults delete com.apple.dock; killall Dock
 ```
 ## Packages/Tools
     emacs
-    nvim
     tmux
-    fish
-    fzf
-    font-fira-mono-nerd-font
     ghidra
     gimp
     karabiner-elements
     rectangle
     eloston-chromium
-    discord
-    docker
-    font-noto-sans-mono
-    obs
-    qbittorrent
     scroll-reverser
-    spotify
-    visual-studio-code
-    vlc
-    telegram
-    whatsapp
     zotero
