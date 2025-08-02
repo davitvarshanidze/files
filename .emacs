@@ -14,8 +14,10 @@
 (global-set-key [?\C-,] 'beginning-of-buffer)
 (global-set-key [?\C-.] 'end-of-buffer)
 (global-set-key (kbd "C-o") 'other-window)
-(global-set-key (kbd "C-<right>") 'forward-word)
-(global-set-key (kbd "C-<left>") 'backward-word)
+(global-set-key (kbd "C-k") 'forward-word)
+(global-set-key (kbd "C-j") 'backward-word)
+;;(global-set-key (kbd "C-m") 'forward-paragraph)
+;;(global-set-key (kbd "C-i") 'backward-paragraph)
 (global-set-key (kbd "C-w") 'kill-word)
 (global-set-key (kbd "s-<left>") 'previous-buffer)
 (global-set-key (kbd "s-<right>") 'next-buffer)
@@ -34,7 +36,7 @@
 (global-set-key (kbd "M-o") 'occur)
 (global-unset-key (kbd "M-x"))
 (global-set-key (kbd "C-x C-x") 'execute-extended-command)
-(global-unset-key (kbd "C-k"))
+;; (global-unset-key (kbd "C-k"))
 (global-set-key (kbd "C-q") 'kill-line)
 
 (defun move-line-up ()
@@ -71,19 +73,20 @@
 (setq undo-limit 800000)
 (setq undo-strong-limit 1200000)
 (setq undo-outer-limit 2000000)
+;; (setq confirm-kill-emacs 'y-or-n-p)
 (setq inhibit-startup-message t)
 ;; (setq initial-scratch-message "")
 
 ;; Display line numbers
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-width 3)
-(setq display-line-numbers-widen t)
+;; (global-display-line-numbers-mode 1)
+;; (setq display-line-numbers-width 3)
+;; (setq display-line-numbers-widen t)
 
-(add-hook 'window-configuration-change-hook
-          (lambda ()
-            (setq display-line-numbers-width 3)))
+;; (add-hook 'window-configuration-change-hook
+;;           (lambda ()
+;;             (setq display-line-numbers-width 3)))
 
-(add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
+;; (add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
 
 ;; Vertical completions
 (defun my/display-completion-list (completions &optional base-size _highlight)
@@ -100,8 +103,8 @@
 (advice-add 'display-completion-list :override #'my/display-completion-list)
 
 ;; Highlight line
-(global-hl-line-mode t)
-(set-face-attribute 'hl-line nil)
+;; (global-hl-line-mode t)
+;; (set-face-attribute 'hl-line nil)
 
 ;; Custom set variables
 (custom-set-variables
@@ -144,11 +147,10 @@
  '(font-lock-number-face ((t (:foreground "#A4C161"))))
  '(hl-line ((t (:background "#333333")))))
 
-
 (global-font-lock-mode 1)
 (set-cursor-color "lightgreen")
 ;; (set-face-attribute 'default nil :height 140)
-(set-face-attribute 'default nil :font "BlexMono Nerd Font Medium" :height 160)
+(set-face-attribute 'default nil :font "FiraCode Nerd Font Medium" :height 180)
 
 ;; Enable mouse support
 (unless window-system
@@ -164,11 +166,11 @@
 (setq mouse-sel-mode t)
 )
 
-;; Displays date
-(setq display-time-day-and-date t)
-(setq display-time-24hr-format t)
-(display-time)
-(setq european-calendar-style t)
+;; ;; Displays date
+;; (setq display-time-day-and-date t)
+;; (setq display-time-24hr-format t)
+;; (display-time)
+;; (setq european-calendar-style t)
 
 ;; Show parens immediately
 (setq show-paren-delay 0)
@@ -302,6 +304,21 @@
 (setq shell-command-switch "-c")             ;; Use async shell commands
 (setq recentf-max-saved-items 100)           ;; Limit the number of recent files tracked
 (setq redisplay-dont-pause t)                ;; Prevent Emacs from pausing during redisplay
+
+;; Duplicate line
+(defun rc/duplicate-line ()
+  "Duplicate current line"
+  (interactive)
+  (let ((column (- (point) (point-at-bol)))
+        (line (let ((s (thing-at-point 'line t)))
+                (if s (string-remove-suffix "\n" s) ""))))
+    (move-end-of-line 1)
+    (newline)
+    (insert line)
+    (move-beginning-of-line 1)
+    (forward-char column)))
+
+(global-set-key (kbd "C-,") 'rc/duplicate-line)
 
 ;; 42 Header
 (defun my/insert-42-header ()
