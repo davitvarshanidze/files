@@ -73,11 +73,11 @@
 (setq undo-limit 800000)
 (setq undo-strong-limit 1200000)
 (setq undo-outer-limit 2000000)
-;; (setq confirm-kill-emacs 'y-or-n-p)
 (setq inhibit-startup-message t)
-;; (setq initial-scratch-message "")
+(setq initial-scratch-message "")
+;; (setq confirm-kill-emacs 'y-or-n-p)
 
-;; Display line numbers
+;; ;; Display line numbers
 ;; (global-display-line-numbers-mode 1)
 ;; (setq display-line-numbers-width 3)
 ;; (setq display-line-numbers-widen t)
@@ -87,6 +87,32 @@
 ;;             (setq display-line-numbers-width 3)))
 
 ;; (add-hook 'window-configuration-change-hook 'display-line-numbers-mode)
+
+;; ;; Whitespace mode
+;; (defun rc/set-up-whitespace-handling ()
+;;   (interactive)
+;;   (whitespace-mode 1)
+;;   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
+
+;; (add-hook 'tuareg-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'c++-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'c-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'simpc-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'emacs-lisp-mode 'rc/set-up-whitespace-handling)
+;; (add-hook 'java-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'lua-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'rust-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'scala-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'markdown-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'haskell-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'python-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'erlang-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'asm-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'fasm-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'go-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'nim-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'yaml-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'porth-mode-hook 'rc/set-up-whitespace-handling)
 
 ;; Vertical completions
 (defun my/display-completion-list (completions &optional base-size _highlight)
@@ -127,30 +153,30 @@
  '(make-backup-files nil)
  '(package-selected-packages '(theme-buffet)))
 
-;; Custom set faces
 (custom-set-faces
- '(cursor ((t (:background "#A4C161"))))
- '(default ((t (:background "#1E2022" :foreground "#E5E0DB"))))
- '(font-lock-builtin-face ((t (:foreground "#9b859d"))))
- '(font-lock-comment-face ((t (:foreground "#BA9256"))))
- '(font-lock-constant-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-doc-face ((t (:foreground "gray50"))))
- '(font-lock-function-name-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-variable-name-face ((t (:foreground "#d0d0ff"))))
- '(font-lock-keyword-face ((t (:foreground "#c26230"))))
- '(font-lock-string-face ((t (:foreground "#A4C161"))))
- '(font-lock-type-face ((t (:foreground "#C26230"))))
- '(mode-line ((t (:background "#333333" :foreground "#E5E0DB" :box nil))))
- '(mode-line-inactive ((t (:background "#222222" :foreground "#888888" :box nil))))
- '(minibuffer-prompt ((t (:foreground "#c26230" :weight bold))))
- '(minibuffer ((t (:foreground "#E5E0DB"))))
- '(font-lock-number-face ((t (:foreground "#A4C161"))))
- '(hl-line ((t (:background "#333333")))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:foreground "#eedfcc" :background "#001d34"))))
+ '(custom-group-tag-face ((t (:underline t foreground "lavender"))) t)
+ '(custom-variable-tag-face ((t (:underline t foreground "lavender"))) t)
+ '(font-lock-builtin-face ((t (:foreground "lavender"))))
+ '(font-lock-comment-face ((t (:foreground "#00cd00"))))
+ '(font-lock-function-name-face ((((class color) (background dark)) (:foreground "white"))))
+ '(font-lock-keyword-face ((t (:foreground "white"))))
+ '(font-lock-string-face ((t (:foreground "lightgreen"))))
+ '(font-lock-variable-name-face ((((class color) (background dark)) (:foreground "lavender"))))
+ '(font-lock-warning-face ((t (:bold t foreground "#504038"))))
+ '(highlight ((t (:foreground "navyblue" :background "darkseagreen2"))))
+ '(mode-line ((t (:foreground "#eedfcc" :background "#013247"))))
+ '(region ((t (:background "blue"))))
+ '(widget-field-face ((t (:foreground "white"))) t)
+ '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
 (global-font-lock-mode 1)
 (set-cursor-color "lightgreen")
-;; (set-face-attribute 'default nil :height 140)
-(set-face-attribute 'default nil :font "FiraCode Nerd Font Medium" :height 180)
+(set-face-attribute 'default nil :height 140)
 
 ;; Enable mouse support
 (unless window-system
