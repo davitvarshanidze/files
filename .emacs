@@ -158,7 +158,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#eedfcc" :background "#001d34"))))
+ '(default ((t (:foreground "tan" :background "#001d34"))))
  '(custom-group-tag-face ((t (:underline t foreground "lavender"))) t)
  '(custom-variable-tag-face ((t (:underline t foreground "lavender"))) t)
  '(font-lock-builtin-face ((t (:foreground "lavender"))))
@@ -169,14 +169,13 @@
  '(font-lock-variable-name-face ((((class color) (background dark)) (:foreground "lavender"))))
  '(font-lock-warning-face ((t (:bold t foreground "#504038"))))
  '(highlight ((t (:foreground "navyblue" :background "darkseagreen2"))))
- '(mode-line ((t (:foreground "#eedfcc" :background "#013247"))))
  '(region ((t (:background "blue"))))
  '(widget-field-face ((t (:foreground "white"))) t)
  '(widget-single-line-field-face ((t (:background "darkgray"))) t))
 
 (global-font-lock-mode 1)
 (set-cursor-color "lightgreen")
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 150)
 
 ;; Enable mouse support
 (unless window-system
